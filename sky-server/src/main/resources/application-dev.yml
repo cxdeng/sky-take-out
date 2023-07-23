@@ -6,3 +6,10 @@ sky:
     database: sky_take_out
     username: root
     password: root
+
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
