@@ -47,4 +47,11 @@ public interface DishMapper {
      * @param id
      */
     void deleteById(Long id);
+
+
+    /**
+     * 根据id动态修改菜品
+     * @param dish
+     */
+    void update(Dish dish);
 }
