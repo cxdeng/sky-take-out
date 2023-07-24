@@ -11,6 +11,10 @@ sky:
     port: 6379
     password: redis
     database: 0
+  wechat:
+    appid: 00000000
+    secret: 00000000
+
 
 spring:
   servlet:
