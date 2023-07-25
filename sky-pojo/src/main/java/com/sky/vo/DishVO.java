@@ -1,5 +1,6 @@
 package com.sky.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sky.entity.DishFlavor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
