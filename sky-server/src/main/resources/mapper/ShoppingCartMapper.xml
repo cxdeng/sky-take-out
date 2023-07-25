@@ -27,4 +27,9 @@
         values (#{name}, #{image}, #{userId}, #{dishId}, #{setmealId}, #{dishFlavor}, #{amount}, #{createTime})
     </insert>
 
+
+    <delete id="deleteByUserId">
+        delete from shopping_cart where user_id = #{userId}
+    </delete>
+
 </mapper>

@@ -48,4 +48,17 @@ public class ShoppingCartController {
 
         return Result.success(list);
     }
+
+
+    /**
+     * 清空购物车
+     *
+     * @return
+     */
+    @ApiOperation("清空购物车")
+    @DeleteMapping("clean")
+    public Result clean() {
+        shoppingCartService.cleanCart();
+        return Result.success();
+    }
 }

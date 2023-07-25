@@ -32,4 +32,11 @@ public interface ShoppingCartMapper {
      * @param shoppingCart
      */
     void insert(ShoppingCart shoppingCart);
+
+
+    /**
+     * 根据userId清空购物车
+     * @param userId
+     */
+    void deleteByUserId(Long userId);
 }
