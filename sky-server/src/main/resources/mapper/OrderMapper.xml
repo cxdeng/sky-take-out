@@ -50,4 +50,11 @@
         </set>
         where id = #{id}
     </update>
+
+
+    <select id="getById" resultType="com.sky.entity.Orders">
+        select * from orders where id = #{id}
+    </select>
+
+
 </mapper>

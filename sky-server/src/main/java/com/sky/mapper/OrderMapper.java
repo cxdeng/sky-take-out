@@ -12,12 +12,14 @@ public interface OrderMapper {
 
     /**
      * 插入订单数据
+     *
      * @param order
      */
     void insert(Orders order);
 
     /**
      * 根据订单状态和订单时间查询订单
+     *
      * @param status
      * @param orderTime
      * @return
@@ -26,7 +28,16 @@ public interface OrderMapper {
 
     /**
      * 更新订单
+     *
      * @param order
      */
     void update(Orders order);
+
+    /**
+     * 根据id查询订单
+     *
+     * @param id
+     * @return
+     */
+    Orders getById(Long id);
 }
