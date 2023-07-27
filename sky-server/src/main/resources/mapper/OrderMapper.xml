@@ -73,4 +73,21 @@
     </select>
 
 
+    <update id="countByMap">
+        select count(id)
+        from orders
+        <where>
+            <if test="begin != null">
+                and order_time <![CDATA[>]]> #{begin}
+            </if>
+            <if test="end != null">
+                and order_time <![CDATA[<]]> #{end}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </update>
+
+
 </mapper>
