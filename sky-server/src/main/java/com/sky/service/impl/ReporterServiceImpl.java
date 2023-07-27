@@ -1,10 +1,12 @@
 package com.sky.service.impl;
 
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReporterService;
 import com.sky.vo.OrderReportVO;
+import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -165,7 +168,7 @@ public class ReporterServiceImpl implements ReporterService {
         Integer validOrderCount = validOrderList.stream().reduce(Integer::sum).get();
 
         // 计算订单完成率
-        Double orderCompletionRate = 0.0;
+        double orderCompletionRate = 0.0;
         if (totalOrderCount != 0) {
             orderCompletionRate = validOrderCount.doubleValue() / totalOrderCount;
         }
@@ -180,6 +183,34 @@ public class ReporterServiceImpl implements ReporterService {
                 .build();
 
         return null;
+    }
+
+
+    /**
+     * 统计指定时间内销售排名前10
+     *
+     * @param begin
+     * @param end
+     * @return
+     */
+    @Override
+    public SalesTop10ReportVO getSalesTop10(LocalDate begin, LocalDate end) {
+        LocalDateTime beginTime = LocalDateTime.of(begin, LocalTime.MIN);
+        LocalDateTime endTime = LocalDateTime.of(end, LocalTime.MAX);
+
+        List<GoodsSalesDTO> salesTop10List = orderMapper.getSalesTop10(beginTime, endTime);
+
+        List<String> nameList = salesTop10List.stream().map(GoodsSalesDTO::getName).collect(Collectors.toList());
+        String nameListStr = StringUtils.join(nameList, ",");
+
+        List<Integer> numbersList = salesTop10List.stream().map(GoodsSalesDTO::getNumber).collect(Collectors.toList());
+        String numberListStr = StringUtils.join(numbersList, ",");
+
+        return SalesTop10ReportVO
+                .builder()
+                .nameList(nameListStr)
+                .numberList(nameListStr)
+                .build();
     }
 
 
